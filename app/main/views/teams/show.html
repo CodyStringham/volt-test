@@ -1,0 +1,26 @@
+<:Title>
+  {{ if loaded? }}
+    {{ name }}
+  {{ end }}
+
+<:Body>
+
+  <h1>{{ model._name }}</h1>
+  <h5>{{ model._goals.inspect }}</h5>
+
+  {{ model._goals.each do |goal| }}
+    <h4>
+    {{ goal._name }}
+    <!-- <a e-click="model.parent.delete(model)">X</a> -->
+    <a e-click="remove_goal(goal)">X</a>
+    </h4>
+  {{ end }}
+
+  <hr />
+
+  <form e-submit="add_goal" role="form">
+    <div class="form-group">
+      <label>New Goal:</label>
+      <input class="form-control" type="text" value="{{ page._goal_name  }}" />
+    </div>
+  </form>

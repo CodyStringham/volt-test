@@ -1,0 +1,25 @@
+<:Title>
+  Teams
+
+<:Body>
+
+  <h1>Teams Index Page</h1>
+  <h5>{{ model._teams.inspect }}</h5>
+
+
+  {{ model._teams.each do |team| }}
+    <div class="col-md-12">
+      <h2>
+        <a href="/teams/{{ team.__id }}">{{ team.name }}</a>
+        <button e-click="remove_team(team)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span></button>
+      </h2>
+    </div>
+  {{ end }}
+
+
+  <form e-submit="add_team" role="form">
+    <div class="form-group">
+      <label>New Team:</label>
+      <input class="form-control" type="text" value="{{ page._new_team  }}" />
+    </div>
+  </form>
