@@ -18,11 +18,13 @@ class TeamsController < Volt::ModelController
   end
 
   def remove_team(team)
+    team_goals = _goals.find(team_id: team._id)
+    team_goals.each {|goal| _goals.delete(goal) }
     _teams.delete(team)
   end
 
   def add_goal
-    self.model._goals << {name: page._goal_name}
+    _goals << {name: page._goal_name, team_id: self.model.__id}
     page._goal_name = ''
   end
 
